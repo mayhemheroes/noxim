@@ -1,0 +1,7 @@
+project: noxim
+target: ttable-fromhub
+
+cmds:
+  - cmd: /repo/other/ttable_from_hub @@ 1 2 3 4 5
+    env:
+      DISABLE_SMOKETEST: '1'
