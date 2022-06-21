@@ -1,5 +1,5 @@
 project: noxim
-target: ttable-fromhub
+target: ttable-from-hub
 
 cmds:
   - cmd: /repo/other/ttable_from_hub @@ 1 2 3 4 5
