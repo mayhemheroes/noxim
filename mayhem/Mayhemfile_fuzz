@@ -1,0 +1,13 @@
+project: noxim
+target: ttable-parse
+
+# In-process libFuzzer harness over noxim's routing/region helpers (id2Coord, getWiredDistanceI,
+# getWirelessDistance, prefersWirelessPath, GetNodesInRegion) from other/ttable_from_hub.cpp.
+# Replaces the original dead mayhem/fuzz.cpp harness.
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/ttable-parse/testsuite
+
+cmds:
+  - cmd: /mayhem/fuzz
+    libfuzzer: true

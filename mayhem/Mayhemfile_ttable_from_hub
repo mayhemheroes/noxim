@@ -1,0 +1,16 @@
+project: noxim
+target: ttable-from-hub
+
+# File-input target: the upstream `ttable_from_hub` CLI, built instrumented (ASan+UBSan).
+# Mayhem mutates the traffic-table file (@@); the trailing args are the mesh/region geometry
+# (dim_x dim_y dim_region_x dim_region_y communications). The parser does region enumeration
+# with malloc sizing derived from the file contents plus distance/routing math with active
+# asserts — the bug surface this target drives.
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/ttable-from-hub/testsuite
+
+cmds:
+  - cmd: /mayhem/ttable_from_hub @@ 8 8 2 2 4
+    env:
+      DISABLE_SMOKETEST: '1'
